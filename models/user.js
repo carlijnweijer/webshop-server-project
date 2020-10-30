@@ -20,14 +20,14 @@ module.exports = (sequelize, DataTypes) => {
       email: { type: DataTypes.STRING, unique: true, allowNull: false },
       password: { type: DataTypes.STRING, allowNull: false },
       isAdmin: { type: DataTypes.BOOLEAN, allowNull: false },
-      createdAt: {
-        allowNull: false,
-        type: Sequelize.DATE,
-      },
-      updatedAt: {
-        allowNull: false,
-        type: Sequelize.DATE,
-      },
+      // createdAt: {
+      //   allowNull: false,
+      //   type: Sequelize.DATE,
+      // },
+      // updatedAt: {
+      //   allowNull: false,
+      //   type: Sequelize.DATE,
+      // },
     },
     {
       sequelize,

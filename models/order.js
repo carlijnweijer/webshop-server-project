@@ -1,5 +1,6 @@
 "use strict";
 const { Model } = require("sequelize");
+const orderitem = require("./orderitem");
 module.exports = (sequelize, DataTypes) => {
   class order extends Model {
     /**
@@ -9,7 +10,10 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       order.belongsTo(models.user);
-      order.belongsToMany(models.product);
+      order.belongsToMany(models.product, {
+        through: "orderItem",
+        foreignKey: "orderId",
+      });
     }
   }
   order.init(
