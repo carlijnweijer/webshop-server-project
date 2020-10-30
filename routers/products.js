@@ -1,10 +1,15 @@
 const { Router } = require("express");
 router = new Router();
 
-const User = require("../models").user;
+const Product = require("../models").product;
 
 router.get("/", async (req, res, next) => {
-  res.send("hello products");
+  try {
+    const allProducts = await Product.findAll();
+    res.json(allProducts);
+  } catch (e) {
+    next(e);
+  }
 });
 
 module.exports = router;
