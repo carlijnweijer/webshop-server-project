@@ -28,4 +28,25 @@ router.get("/:categoryId/products", async (req, res, next) => {
   }
 });
 
+router.post("/:categoryId/products", async (req, res, next) => {
+  try {
+    const { name, description, priceEuroCents, imageUrl } = req.body;
+    const categoryId = req.params.categoryId;
+
+    if (!name || !description || !priceEuroCents || !imageUrl || !categoryId) {
+      res
+        .status(400)
+        .send(
+          "Please provide a name, description, price in Eurocents and an imageUrl!"
+        );
+      return;
+    }
+
+    const newProdcut = await Product.create({ categoryId, ...req.body });
+    res.json(newProdcut);
+  } catch (error) {
+    next(error);
+  }
+});
+
 module.exports = router;
